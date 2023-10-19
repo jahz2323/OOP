@@ -1,0 +1,92 @@
+Question 5
+Answer saved
+Marked out of 15.00
+Flag question
+Question text
+
+Question 5 [15 marks]
+
+Given the Point class below, write a function (not a method of a class) that takes an array of Point's as its argument and returns a reference to the point in the array that is closest to the origin, point (0,0). Note that your function will also need to have a parameter to pass in the length of the array.
+
+class Point {
+private:
+    double x, y;
+public:
+    Point(double _x, double _y) : x(_x), y(_y) { }
+    double X() const { return x; }
+    double Y() const { return y; }
+    void moveBy(double _x, double _y) { x += _x; y += y; }
+    void print() { cout << "(" << x << "," << y << ")"; }
+};
+
+<p></p>
+Question 6
+Answer saved
+Marked out of 15.00
+Flag question
+Question text
+
+Question 6 [15 marks]
+
+Given the Point class below, write a new C++ class that represents a triangle. A triangle has three Point data members, one for each vertex of the triangle. A triangle has the following features:
+
+    A constructor to initialize a triangle with three given Point objects, when it is created.
+    A moveBy(...) method that allows a triangle to be moved by a given amount in the x and y directions.
+    An area() method, which returns the area of the triangle.
+    A print() method, which prints out all information about a triangle, its point data and its area.
+
+class Point { // Note: this is the same Point class as Q5
+private:
+    double x, y;
+public:
+    Point(double _x, double _y) : x(_x), y(_y) { }
+    double X() const { return x; }
+    double Y() const { return y; }
+    void moveBy(double _x, double _y) { x += _x; y += y; }
+    void print() { cout << "(" << x << "," << y << ")"; }
+};
+
+<p></p>
+Question 7
+Answer saved
+Marked out of 15.00
+Flag question
+Question text
+
+Question 7 [15 marks]
+
+Given the Student class below, write a new class called StudentList which can store a list of Student objects. A new Student may be added to the list by calling an add() method. The list must be stored dynamically, using no more memory than needed to store the current number of students in the list. Here are the data members and member methods your class will need to have:
+
+    The list data will be stored as a dynamic array of Student objects. The current length of the list will need to be stored and updated as students are added.
+    A constructor method, that initializes the list length variable to 0.
+    An add(...) method that takes a Student object, passed by reference to const, which adds a copy of the Student to the end of the list.
+    A length() method that returns the current length of the list.
+    A get(int i) method that returns a reference to the ith student in the list (indexing from 0).
+    A destructor which ensures all memory allocated using new (or new[]) is deallocated when the StudentList object is destroyed.
+
+Here is some test code which the user expects to be able to write using your class:
+
+    StudentList student_list;
+    student_list.add(Student("Bob",123));
+    student_list.add(Student("Jane",124));
+    student_list.add(Student("Peter",125));
+    // print all students in the list
+    for (int i=0; i<student_list.length(); i++)
+        student_list.get(i).print();
+
+This should result in the printout:
+
+Student Name: Bob | ID: 123
+Student Name: Jane | ID: 124
+Student Name: Peter | ID: 125
+
+
+class Student { // Class required for this question
+private:
+    string name;
+    int ID;
+public:
+    Student() : name(""), ID(0) {}
+    Student(string nm, int id) : name(nm), ID(id) {}
+    void print() { cout << "Student Name: " << name << " | ID: " << ID << endl; }
+};

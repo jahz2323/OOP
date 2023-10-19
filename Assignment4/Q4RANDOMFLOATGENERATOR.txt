@@ -1,0 +1,54 @@
+
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class RandGenerator{
+    private:
+    int ref_number;
+    int ref_range; 
+    
+    public:
+    
+     RandGenerator () : ref_number(0.0f), ref_range(1.0f) {
+         srand(time(NULL));
+     }
+     RandGenerator (float number, float range) : ref_number(number), ref_range(range) {
+        srand(time(NULL));
+     }
+    float get(){
+         
+     float result = float( rand()) / RAND_MAX ;
+          return result*(ref_range- ref_number) + ref_number;
+     }
+     
+     
+
+};
+    
+
+int main()
+{
+    
+    cout<<"Hello World" << endl;
+    RandGenerator rg1;
+    cout << "Here are some random numbers between 0 and 1" << endl;
+    cout << rg1.get() << endl;
+    cout << rg1.get() << endl;
+    cout << rg1.get() << endl;
+    RandGenerator rg2(100,200);
+    cout << "Here are some random numbers between 100 and 200" << endl;
+    cout << rg2.get() << endl;
+    cout << rg2.get() << endl;
+    cout << rg2.get() << endl;
+
+    return 0;
+}

@@ -1,0 +1,58 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class Accumulator{
+    
+    private:
+    double ref_total;
+ 
+    
+    public:
+    Accumulator() : ref_total(0.0){
+    }
+    Accumulator(double value) : ref_total(value){
+        
+    }
+    // add(const Accumulator& other)  adds the total of another Accumulator values to the Accumulator's total.
+   void add(const Accumulator& value){
+       ref_total +=  value.ref_total;
+        
+    }
+    void print(){
+        cout << ref_total << endl;
+    }
+    void reset(){
+        ref_total = 0.0;
+    }
+
+    
+};
+
+int main()
+{
+    cout<<"Hello World" << endl;
+    Accumulator acc1;
+    acc1.add(20.3);
+    acc1.add(10.5);
+    acc1.add(-2.3);
+    acc1.add(3.2);
+    cout << "Accumulator 1 value = ";
+    acc1.print();
+    cout << endl;
+    Accumulator acc2;
+    acc2.add(100.0);
+    acc2.add(acc1);
+    cout << "Accumulator 2 value = ";
+    acc2.print();
+    cout << endl;
+    return 0;
+}

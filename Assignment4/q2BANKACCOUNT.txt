@@ -1,0 +1,50 @@
+
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class Account{
+    private:
+    string ref_name;
+    int ref_acnumber;
+    float balance;
+    
+    public: 
+    Account (string name, int acnumber) : ref_name(name), ref_acnumber(acnumber) {}
+    Account (string name, int acnumber, float balance) : ref_name(name), ref_acnumber(acnumber),
+    balance(balance){}
+    
+    void deposit(float money) {
+        balance += money; 
+    } 
+    void withdraw(float money){
+        balance -= money;
+    }
+    
+    void print() { cout <<"Account Name:"<< ref_name << "| Account Number:"<< ref_acnumber <<
+    " Balance:" << balance <<endl; }
+};
+
+
+int main()
+{
+    cout<<"Hello welcome to bank code" << endl;
+    Account jackAC("Jack",123450);
+    Account janeAC("Jane",123451,100.0);
+    jackAC.print();
+    janeAC.print();
+    jackAC.deposit(25.0);
+    janeAC.withdraw(15.0);
+    jackAC.print();
+    janeAC.print();
+
+    return 0;
+}

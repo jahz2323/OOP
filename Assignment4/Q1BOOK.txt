@@ -1,0 +1,31 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class Book {
+ private:
+    string & ref_title;
+    string  ref_author;
+    int ref_year;
+    
+ public:
+    Book (string name, string author, int year) : ref_title(name), ref_author(author), ref_year(year) { }
+    
+    void print() { cout << " " << ref_author << " ," << ref_title << " ," <<ref_year << ".";}
+ };
+
+int main()
+{
+
+    Book cpp_book("A Tour of C++", "Bjarne Stroustrup",2013);
+    cpp_book.print();
+    return 0;
+}
