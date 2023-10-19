@@ -1,0 +1,55 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+ interface Printable {
+      void print();
+   }
+   class numbers implements Printable{
+       private static numbers[] Decimals = new numbers[100];
+       protected int num; 
+       protected int decimal; 
+       public numbers(int number , int decimals){
+       num = number; 
+       decimal = decimals; 
+       }
+       public int getnumber(int number){
+          return num; 
+       }
+       public int getdecimal( int decimals){
+           return decimal;
+       }
+       public void print() { 
+           System.out.println( "value is: " + num + "." + decimal); 
+   }
+       
+        
+        class Binary extends numbers{ 
+            private static Binary[] binarynum = new Binary[100]; 
+            protected int num; 
+            protected double decimal; 
+            protected int _msb; 
+            protected int _mbit; 
+            protected int _lsb; 
+            public Binary( int number, int decimals, int msb, int mbit, int lsb ){
+               
+                this._mbit = mbit; 
+                this._lsb = lsb;
+            }
+            
+            public void print() { 
+                System.out.print("Full value: " + super.getnumber() +"."+ super.getdecimal() + "Binary: " + _msb + _mbit + _lsb );
+            }
+            
+            public static void main(String args[]){
+                binarynum[1] = new Binary(5,0,1,0,1); 
+                Decimals[1] = new numbers(5,0); 
+                binarynum[1].print();
+                Decimals[1].print();
+            }
+        }
+}

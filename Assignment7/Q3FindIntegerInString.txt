@@ -1,0 +1,31 @@
+class StringUtils{
+    
+    public static int[] extractNumbers(String str) {
+        int[] numbers = new int[100];
+        int j = 0;
+        int k = 0; 
+        for(int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if(c >= '0' && c <= '9') {
+                j = j * 10 + (c - '0');
+            } else if(j > 0) {
+                numbers[k++] = j;
+                j = 0;
+            }
+        }
+        if(j > 0) {
+            numbers[k++] = j; //This code stores each extracted number in the array numbers and uses a separate counter k to keep track of the number of numbers stored in the array. 
+        }
+        return numbers; 
+    }
+
+    public static void main(String args[]) {
+        String str = "The first ten prime numbers are 2,3,5,7,11 then 13 then 17 then 19 and finally 23 and 29";
+        int[] numbers = StringUtils.extractNumbers(str);
+        for(int i=0; i<numbers.length; i++) {
+            if(numbers[i] != 0) {
+                System.out.print(numbers[i] + " ");
+            }
+        }
+    }
+}

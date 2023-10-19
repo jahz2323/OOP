@@ -1,0 +1,101 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+ abstract class Account {
+	private int accountNumber;
+	private String name;
+	private double balance;
+	
+	public Account(int acn, String name, double balance) {
+		accountNumber = acn;
+		this.name = name;
+		this.balance = balance;
+	}
+	
+	public void withdraw(double amount) { balance -= amount; }
+	public void deposit(double amount) { balance += amount;	}
+	public double getBalance() { return balance; }
+	
+	@Override
+	public String toString() {
+		return "Account Number : " + accountNumber + " | Name : " + name;
+	}
+}
+    public class LoanAccount extends Account{
+        protected double interest; // yearly intrest 0.05 5% anually 
+        protected int loanterm; 
+        static int i;
+        
+       protected static LoanAccount[] Accounts = new LoanAccount[10];
+       private int NumAccounts = 0;
+        LoanAccount(int acn, String name , double balance, double interest, int loanterm){
+        super(acn , name , balance = 0  );// constructor in parent
+        
+        
+        this.interest = interest;
+        this.loanterm = loanterm; 
+        }
+
+         public double calculateMonthlyRepayment(){
+          return  ((this.interest / 12 ) * this.loanterm)* super.getBalance();
+        }
+        @Override // needs implementation 
+        public void withdraw(double  amount){
+            if(i < 1)
+            {
+                i++;
+            super.withdraw(amount);
+            super.getBalance(); 
+            
+            }
+            else {
+                System.out.print( " Withdraw limit reached: " ); 
+            }
+        }
+        
+        public static void MonthlyRepayment(LoanAccount Acc){
+                System.out.print ( Acc.calculateMonthlyRepayment() );
+            
+        }
+        
+        
+        public void deposit(double amount){
+            super.deposit(amount);
+            super.getBalance();
+        }
+        
+         @Override public String toString(){
+            
+            return super.toString() +  " Account Balance: " + super.getBalance() + " Account intrest: "
+            + interest + " Account loanterm: " + loanterm + " ";
+        }
+        //How to Calculate Amortization of Loans. You'll need to divide your annual interest rate by 12.
+     // if your annual interest rate is 3%, then your monthly interest rate will be 0.25% (0.03 annual interest rate ÷ 12 months). 
+       // You'll also multiply the number of years in your loan term by 12.
+       
+        
+        
+        public static void main(String args[]){
+            
+            LoanAccount Jerry = new LoanAccount(55, "Jerry",0, 0.05, 5); 
+            
+            Jerry.withdraw(700);
+            Jerry.deposit(1000);
+            System.out.print ( " Monthly repayment = : " + Jerry.calculateMonthlyRepayment()); 
+            System.out.print ( Jerry); 
+            
+            Accounts[0] = new LoanAccount(55, "Bobby",0, 0.05, 5);
+            Accounts[1] = new LoanAccount(55, "Zachary",0, 0.05, 5);
+            Accounts[0].deposit(300);
+           
+            MonthlyRepayment(Accounts[0]);
+            
+            //LoanAccount.calc();
+        }
+    }
+    

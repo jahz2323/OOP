@@ -1,0 +1,28 @@
+class StringUtils {
+    public static int[] extractNumbers(String str) {
+        String[] words = str.split("\\W+"); // Split the string into words
+        int[] numbers = new int[100]; // Initialize an array to store numbers
+        int count = 0; // Initialize a counter for numbers
+        
+        for (String word : words) {
+            try {
+                int number = Integer.parseInt(word); // Try to parse the word as an integer
+                numbers[count] = number; // Store the number in the array
+                count++; // Increment the counter
+            } catch (NumberFormatException e) {
+                // The word is not a number, so do nothing
+            }
+        }
+        
+        int[] result = new int[count]; // Initialize a new array with the correct length
+        System.arraycopy(numbers, 0, result, 0, count); // Copy the numbers to the new array
+        return result; // Return the new array
+    }
+      public static void main(String args[]) {
+            String str = "The first ten prime numbers are 2,3,5,7,11 then 13 then 17 then 19 and finally 23 and 29";
+    int[] Numbers_ = extractNumbers(str);
+        for(int i =0; i<Numbers_.length; i++){
+        System.out.println( Numbers_[i]);
+        }
+    }
+}

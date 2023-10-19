@@ -1,0 +1,48 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+ 
+
+class Point2D  {
+    protected double x, y;
+    	
+    public Point2D(double x, double y) {
+        this.x = x;
+        this.y = y;
+
+    }
+   
+    }
+    
+    class Color extends Point2D {
+    protected double r,g,b;
+    protected double x,y; 
+    public Color(double x, double y,  double r, double g, double b){
+     super(x,y);
+     this.x = x;
+     this.y = y;
+     this.r = r;
+     this.g = g;
+     this.b = b;
+     } 
+	   
+    }
+    
+public class Pxl extends Color{
+    protected  Pxl Pixel; 
+    
+     public Pxl(double x, double y, double r, double g, double b){
+          super( x,y,r,g,b );
+     }
+     public void display(){
+         System.out.println("Pixel (x,y) = " + x + "," + y + " Color = " + r+ "," + b + "," + g );
+     }
+ public static void main(String args[]){
+     Pxl Pixel = new Pxl(10,20,0.5,0.6,0.7);
+     Pixel.display();
+  }
+}

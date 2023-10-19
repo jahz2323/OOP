@@ -1,0 +1,45 @@
+
+ interface Printable {
+      void print();
+   }
+ 
+   class numbers implements Printable{
+       protected static numbers[] Decimals = new numbers[100];
+       protected int num, decimal; 
+       public numbers(int number , int decimals){
+       this.num = number; 
+       this.decimal = decimals; 
+       }
+        public void print() { 
+           System.out.println( "value is: " + num + "." + decimal); 
+     }
+       
+   }
+   
+        
+        class Binary extends numbers{ 
+            protected static Binary[] binarynum = new Binary[100]; 
+            protected int num, decimal; 
+            protected int _msb; 
+            protected int _mbit; 
+            protected int _lsb; 
+            
+            public Binary( int num, int decimal, int msb, int mbit, int lsb ){
+            super(num,decimal);
+                _msb = msb; 
+                _mbit = mbit; 
+                _lsb = lsb;
+            }
+            
+            public void print() { 
+                System.out.print("Binary: " + _msb + _mbit + _lsb );
+            }
+            
+            public static void main(String args[]){
+                binarynum[1] = new Binary(5,0,1,0,1); 
+                Decimals[1] = new numbers(5,0); 
+                binarynum[1].print();
+                Decimals[1].print();
+            }
+        }
+   
