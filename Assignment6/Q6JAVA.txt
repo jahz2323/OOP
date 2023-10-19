@@ -1,0 +1,67 @@
+	
+ class Module{
+    private String code; // private class data members
+	private String Name; 
+	
+	public Module(String _code, String _Name) { // class constructor
+		code = _code;
+		Name = _Name;
+	}
+	public Module(){
+	    
+	}
+	public void Display() {
+		System.out.println(" Module Code: " + code + " Module name: " + Name );
+		};
+	
+}
+
+public class Student extends Module {
+    private String name; // private class data members
+	private int id_number;
+	private String programcode; 
+	// module objects 
+	private static Module[] Modules = new Module[10];
+	private int nummodules =0;
+	
+	
+	
+	public Student(String studentname, int number, String program_code) { // class constructor
+		name = studentname;
+		id_number = number;
+		programcode = program_code;
+		
+		
+	}
+	
+	public void Display() {
+		System.out.println(" Student Name: " + name + " Student ID: " + id_number + " Program Code "+ programcode);
+		for( int i=0; i< nummodules; i++)
+		Modules[i].Display();
+		
+		
+	}   
+	public void addModule(Module mod){
+	    Modules[nummodules++]=mod;
+	     System.out.println(" Module added:" );
+	}
+
+	
+	public static void main(String args[]) {
+	    
+	    
+		Student Anderson = new Student("Anderson",103,"ECE");
+		Modules[0] = new Module("EE219","Object Orientated Programming");
+	    Modules[1] = new Module("EE202", "Embedded systems");
+	    Modules[2] = new Module("EE202","Maths");
+	    Modules[3] = new Module("EE207","Systems");
+	    Modules[4] = new Module("EE201","Digital and Analogue");
+	    Modules[5] = new Module("PS202","ElectroMAg");
+	   
+		Anderson.addModule(Modules[4]);
+		Anderson.addModule(Modules[3]);
+		Anderson.addModule(Modules[5]);
+		Anderson.Display();
+    
+	}
+}

@@ -1,0 +1,82 @@
+
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+	
+ class Module{
+    private String code; // private class data members
+	private String Name; 
+	
+	public Module(String _code, String _Name) { // class constructor
+		code = _code;
+		Name = _Name;
+	}
+	public Module(){
+	    
+	}
+	public void Display() {
+		System.out.println(" Module Code: " + code + " Module name: " + Name );
+		};
+	
+}
+
+public class Student extends Module {
+    private String name; // private class data members
+	private int id_number;
+	private String programcode; 
+	// module objects 
+	// array of Module References 
+	private static Module[] Modules = new Module[10]; //  creates static array of type Module, initalises the Module array with 10 memory allocations
+	// static member cannot refer to nonstatic array list 
+	private int nummodules =0; // number of added modules
+	
+	
+	
+	public Student(String studentname, int number, String program_code) { // class constructor
+	// initalising list
+		name = studentname;
+		id_number = number;
+		programcode = program_code;
+		
+		
+	}
+	
+	public void Display() {
+	    // printing method for student and added modules 
+		System.out.println(" Student Name: " + name + " Student ID: " + id_number + " Program Code "+ programcode);
+		for( int i=0; i< nummodules; i++) // index for number of added modules 
+		Modules[i].Display(); // prints out new array of added modules
+		
+		
+	}   // method to add modules to Student Object 
+	// takes static member as parameter
+	// Modules[n] where n is the member in the array is passed to the method 
+	public void addModule(Module mod){
+	    Modules[nummodules++] = mod ; // will take point to given object and pass it to a new array initialised at 0 now pointed to given array 
+	     System.out.println(" Module added:" );
+	}
+
+	
+	public static void main(String args[]) {
+	    
+	    
+		Student Anderson = new Student("Anderson",103,"ECE");// New student Anderson 
+		// Allocating Module objects to Modules array  
+		Modules[0] = new Module("EE219","Object Orientated Programming");
+	    Modules[1] = new Module("EE202", "Embedded systems");
+	    Modules[2] = new Module("EE202","Maths");
+	    Modules[3] = new Module("EE207","Systems");
+	    Modules[4] = new Module("EE201","Digital and Analogue");
+	    Modules[5] = new Module("PS202","ElectroMag");
+	   // method calls
+		Anderson.addModule(Modules[4]); // method call with Student Object with parameters of Module array 
+		Anderson.addModule(Modules[3]);
+		Anderson.addModule(Modules[5]);
+		Anderson.Display(); // display method 
+    
+	}
+}

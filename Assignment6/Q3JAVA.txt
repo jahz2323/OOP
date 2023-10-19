@@ -1,0 +1,18 @@
+public class Movie {
+    private String name; // private class data members
+	private int time;
+	
+	public Movie(String title, int runtime) { // class constructor
+		name = title;
+		time = runtime;
+	}
+	
+	public void printInfo() {
+		System.out.println("Title of movie: " + name + " Runtime: " + time);
+	}
+	
+	public static void main(String args[]) {
+		Movie Panda = new Movie("Kung Fu Panda", 3624);
+		Panda.printInfo();
+	}
+}

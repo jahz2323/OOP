@@ -1,0 +1,18 @@
+public class Module {
+    private String code; // private class data members
+	private String Name; 
+	
+	public Module(String _code, String _Name) { // class constructor
+		code = _code;
+		Name = _Name;
+	}
+	
+	public void Display() {
+		System.out.println(" Module Code: " + code + " Module name: " + Name );
+		};
+	
+	public static void main(String args[]) {
+		Module Objectprogramming = new Module("EE219","Object Orientated Programming");
+		Objectprogramming.Display();
+	}
+}

@@ -1,0 +1,51 @@
+
+
+
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class Point2D{
+    private double xcord; 
+    private double ycord;
+    public int distance;
+    
+    public Point2D(){
+        
+    }
+    public Point2D( double x, double y ){
+        xcord = x;
+        ycord = y;
+    }
+    public double getx(){
+        return xcord; 
+    }
+    public double gety(){
+        return ycord; 
+    }
+    public double distanceto(Point2D point2){
+        double result;
+        result = Math.sqrt ((xcord-point2.getx()*(xcord - point2.getx())) + ((ycord - point2.gety()*(ycord - point2.gety())))); 
+        return result;
+        
+    }
+
+    @Override 
+    public String toString(){
+        return "Xcord is :" + xcord + "Ycord is :" + ycord;
+    }
+    
+	public static void main(String[] args) {
+	    
+	    Point2D Point1 = new Point2D(10.7,6.2);
+	    Point2D Point2 = new Point2D(90.5,6.5);
+	   double distance =  Point1.distanceto(Point2);
+		System.out.println("Point is " + distance ) ;
+		System.out.println( Point1 ) ;
+		
+	}
+}

@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+int sum(int n ){ // iteration code 
+    if (n == 0) return 1; // if there is no value to pass   
+    return n + sum( n-1 ); // function calls itself initallises n but -1 
+}
+
+
+int main()
+{
+    
+    int value = sum(6); // calls function 
+    cout << value - 1;
+    return 0;
+}
