@@ -1,0 +1,139 @@
+
+
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class Person { // given class
+private:
+    string first_name;
+    string last_name;
+public:
+    Person(string fn, string ln) : first_name(fn), last_name(ln) {}
+    virtual void print() {
+        cout << first_name << " " << last_name;
+    }
+};
+
+
+class Employee : public Person { // employee class constructor inherits Class person 
+    private:
+    int id;
+    string department;
+    public:
+    //employee object will take Person(name,lastname) pararmeters + id and department pararmeters
+    // initiallises the objects of Type Employee
+    Employee(string first_name, string last_name, int _id, string _departmentname) : Person(first_name,last_name), id(_id), 
+    department(_departmentname) {}
+    
+    void print() override { // print Overrides Base print no pararmeters
+     Person::print(); 
+    cout<<", " <<"ID: "<< id <<", "<< "DEPARTMENT: " << department << endl;
+    }
+};
+
+class Manager : public Employee { // Manager class inherits Employee 
+    private:
+    Employee *managed[10]; // creates pointers to arrays 10 Memory slots
+    int num_managed = 0; // initiallises the number of managed employees
+    public: 
+    Person person; // gets Public of Person class to use 
+    //Manager Objeect takes these parameters , takes Person type and Employee type 
+    Manager(string name, string lastname, int id, string department) : person(name,lastname), Employee(name,lastname,id,department) {}
+        
+        // Add_manages takes parameter of pointer to an Employee 
+    void add_manages(Employee *emp) { // increments Array of managed 
+        
+        managed[num_managed++] = emp; // increments through array, 
+                                     ///num_managed is the object or "Employee " that is managed 
+        
+    }
+    void manages(Employee &emp){ // Manager object calls manages function with *reference to Employee* will point to Object   
+        add_manages(&emp); // calls add_manages with ^
+    }
+    
+    void print() {
+        Employee::print(); // prints Manager member 
+        cout << "Manages:" << endl;
+        for(int i=0; i<num_managed; i++) // index through number of managed employees 
+        {
+        cout <<" "<<endl;
+        managed[i]->print(); // prints the Employee array  
+        }
+    }
+    
+    
+};
+// for function 
+struct ref_Employee{ // create struct storing objects relating to Employee 
+    string _name;
+    string secondname;
+    int ref_id;
+    string _department;
+    
+    struct Manager{ // create struct storing objects relating to Manager
+        string M_name; 
+        string M_secondname;
+        int M_ref_id;
+        string M_department;
+    };
+    
+};
+// Prints All employees and Managers 
+// pointers to Array and size to have information on array list 
+void printEmployees(ref_Employee** employees, ref_Employee::Manager** managers, int size){
+                // manager before employee to avoud reprinting of employees as function is nested within ref_Employee struct,
+                //also has access to manager struct - avoid this by printing manager out of loop.         
+            cout << "" << endl;
+                cout << "Manager:" << endl;
+                //Prints the first manager 
+                 cout << "Name: " << managers[0]->M_name << "  Second name: " << managers[0]->M_secondname << endl;
+                  cout << "ID: " << managers[0]->M_ref_id << endl;
+                   cout << "Department: " << managers[0]->M_department << endl; 
+    //Employees
+    for(int i=0; i<size; i++){
+         cout << "" << endl;
+         // Prints the employees array 
+        cout << "Name:" << employees[i]->_name << "  Second name  " <<  employees[i]->secondname << endl;
+          cout << "ID:" << employees[i]->ref_id << endl;
+           cout << "Department:" << employees[i]->_department << endl;
+           
+            
+        }
+               
+}
+
+int main()
+{
+    
+    Employee Emp("Anne", "BEL", 123345, "Theatre");// test Employee
+    Employee jane("Jane","Smith",100101,"Sales");
+    Manager sarah("Sarah","Murphy",100155,"Marketing");
+    
+    sarah.manages(jane);
+    sarah.manages(Emp);
+    sarah.print();
+    
+    //Function call
+    const int size = 5; // size of Employee list
+    //Manager array is of type ref_Employee 
+    ref_Employee::Manager* managers[2]; 
+    managers[0] = new ref_Employee::Manager{"Sarah","Murphy",100155,"Marketing"};
+    
+    
+    ref_Employee* employees[size];
+    employees[0] = new ref_Employee{"Alice","Keeting",150001, "Engineer"};
+    employees[1] = new ref_Employee{"Bob","Marley",150002, "Cleaner" };
+    employees[2] = new ref_Employee{"Charlie","Chaplin",150003, "Director" };
+    // calls printemployees with parameters of employeearr, managersarr and size  
+    printEmployees(employees,managers,size); 
+    return 0;
+}

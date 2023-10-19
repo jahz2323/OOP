@@ -1,0 +1,106 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class Rational{ // Class rational 
+    private: 
+    int numerator;
+    int denominator; 
+    
+    
+    public: 
+    // Rational Type parameters ::
+    Rational(int num , int den) : numerator(num) , denominator(den){}
+    
+    // returns new simplified fraction 
+    Rational simplify() const{
+        int newNum= numerator;
+        int newden= denominator;
+        
+        for(int i=denominator; i > 1; i--){ // will check for least common factor index going down from the denominator
+		//doesn't use numerator as 0
+            if(newNum % i==0 && newden % i ==0 ){// no remainder finding GCF 
+            newNum/=i; // divided by i and result is assigned to the new_num && new_den variables
+            newden/=i; 
+            }
+        
+        }
+    return Rational(newNum, newden); // returns the new rational numbers
+    }
+    
+    // Operations do not change the original number only a constant Referance to it 
+    
+    // int new is the result of operations will return to simplify function which will return the Rational objects ( newNum && newden )
+    
+    
+    // Multiply Rational objects 
+    Rational multiply(const Rational& other) const{
+         int newNum = numerator * other.numerator;  // other is object in parameters of Rational type where numerator is value 
+         int newden= denominator * other.denominator;
+         cout << "Result:" << endl;
+         return Rational(newNum, newden).simplify();
+        
+    }
+    // Divide Rational objects 
+    Rational divide(const Rational& other)const{
+        int newNum = numerator * other.denominator;
+        int newden = denominator * other.numerator;
+        return Rational(newNum,newden).simplify();
+    }
+    //Add rational objects
+    Rational add(const Rational& other)const{
+        int newNum = numerator*other.denominator + denominator* other.numerator; // flip fraction and multiply
+        int newden = denominator * other.denominator; // MCF  of denominators 
+        return Rational(newNum, newden).simplify();
+    }
+    //takes argument from divide result
+    Rational reciprocal() const {
+        int newNum = denominator;
+        int newden = numerator;
+        return Rational(newNum, newden).simplify();
+    }
+    
+    
+     void print() const{
+         // if number under the fraction is 0 cannot divide by 0 {Undefined} 
+         if (denominator == 0) { 
+         cout << "Undefined" << endl; 
+         }
+        else
+        cout << numerator << "/" << denominator << endl;
+    }
+   
+};
+
+
+int main()
+{
+    
+    
+    Rational r1(248,856);   // make a rational number with value 248/856
+    r1.simplify().print();  // put number in simplest form and print it - should print "31/107"
+    cout << endl;
+    
+    
+    Rational r2(10,0);       // an undefinded number
+    r2.print();              // should print "undefined" 
+    cout << endl;
+    
+    Rational r3(26,62); 
+    Rational result = r1.multiply(r3);
+    result.print();
+    cout << endl;
+     
+     
+    Rational(3,5).add(Rational(7,9)).multiply(Rational(3,8)).divide(Rational(31,15)).reciprocal().print();
+    return 0;
+}
+ 

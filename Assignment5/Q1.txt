@@ -1,0 +1,45 @@
+
+
+#include <iostream>
+
+using namespace std;
+class Color {
+private:
+    double r, g, b; // red, green, blue components of color
+public:
+    Color(double _r, double _g, double _b) : r(_r), g(_g), b(_b) {}
+    virtual void print() { cout << "[" << r << "," << g << "," << b << "]"; }
+};
+
+class Point2D { //parent
+private:
+    double x, y;
+public:
+    Point2D(double _x, double _y) : x(_x), y(_y) {}
+    virtual void print() { cout << "(" << x << "," << y << ")"; }
+};
+
+class Pixel : public Point2D
+{
+   private:
+   double coord_x,coord_y;
+   double colour1,colour2,colour3; // colour data member 
+    
+    public:
+    Color color;
+    Pixel(double x, double y, double _r, double _g, double _b) : Point2D(x,y),color(_r,_g,_b) {}
+    
+    void print() override { 
+        cout << "Pixel (x,y) = ", Point2D::print();
+        cout << " Color = ", color.print();
+        
+                }
+};
+int main()
+{
+    cout<<"Hello World" << endl;
+     Pixel pxl(10,20,0.5,0.6,0.7);
+     pxl.print();
+
+    return 0;
+}

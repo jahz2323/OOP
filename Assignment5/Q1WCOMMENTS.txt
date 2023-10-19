@@ -1,0 +1,60 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+
+
+#include <iostream>
+
+using namespace std;
+
+// class color 
+class Color {
+private:
+    double r, g, b; // red, green, blue components of color
+public:
+
+    // constructs arguments from Pixel class and will print type color "r,b,g"
+        // has 3 parameters _r,_b,_g and initiallises private data to the parameters
+     Color(double _r, double _g, double _b) : r(_r), g(_g), b(_b) {} 
+    virtual void print() { cout << "[" << r << "," << g << "," << b << "]"; }
+};
+
+class Point2D { //parent
+private:
+    double x, y;
+public:
+    Point2D(double _x, double _y) : x(_x), y(_y) {}
+    virtual void print() { cout << "(" << x << "," << y << ")"; }
+};
+// class pixel inherits from Point2D 
+class Pixel : public Point2D  // inherits from Point2D class Base to child 
+{
+   private:
+   double coord_x,coord_y;
+   double colour1,colour2,colour3; // colour data member 
+    
+    public:
+    Color color; //Access color class which takes in 3 arguments "r,b,g" and print function 
+    // pixel constructor has 5 parameters of objects Point2D and Color 
+    
+    Pixel(double x, double y, double _r, double _g, double _b) : Point2D(x,y),color(_r,_g,_b) {} // pass parameters to Point2d object and color
+    
+    void print() override {  // override checks for same function in base and overrides it. 
+        cout << "Pixel (x,y) = ", Point2D::print();
+        cout << " Color = ", color.print();
+        
+                }
+};
+int main()
+{
+  
+     Pixel pxl(10,20,0.5,0.6,0.7);
+     pxl.print();
+
+    return 0;
+}

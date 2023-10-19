@@ -1,0 +1,126 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class Person {
+private:
+    string first_name;
+    string last_name;
+public:
+    Person(string fn, string ln) : first_name(fn), last_name(ln) {}
+    virtual void print() {
+        cout << first_name << " " << last_name;
+    }
+};
+
+
+class Employee : public Person {
+    private:
+    int id;
+    string department;
+    public:
+    Employee(string first_name, string last_name, int _id, string _departmentname) : Person(first_name,last_name), id(_id), 
+    department(_departmentname) {}
+    
+    void print() override {
+     Person::print();
+    cout<<", " <<"ID: "<< id <<", "<< "DEPARTMENT: " << department << endl;
+    }
+};
+
+class Manager : public Employee {
+    private:
+    Employee *managed[10]; 
+    int num_managed = 0;
+    public: 
+    Person person;
+    Manager(string name, string lastname, int id, string department) : person(name,lastname), Employee(name,lastname,id,department) {}
+    
+    void add_manages(Employee *emp) {
+        
+        managed[num_managed++] = emp;
+        
+    }
+    void manages(Employee &emp){
+        add_manages(&emp);
+    }
+    
+    void print() {
+        Employee::print();
+        cout << "Manages:" << endl;
+        for(int i=0; i<num_managed; i++)
+        {
+        cout <<" "<<endl;
+        managed[i]->print();
+        }
+    }
+    
+    
+};
+struct ref_Employee{
+    string _name;
+    string secondname;
+    int ref_id;
+    string _department;
+    
+    struct Manager{
+        string M_name; 
+        string M_secondname;
+        int M_ref_id;
+        string M_department;
+    };
+    
+};
+void printEmployees(ref_Employee** employees, ref_Employee::Manager** managers, int size){
+                // manager before employee to avoud reprinting of employees as function is nested within ref_Employee struct,
+                //also has access to manager struct - avoid this by printing manager out of loop.         
+            cout << "" << endl;
+                cout << "Manager:" << endl;
+                 cout << "Name: " << managers[0]->M_name << "  Second name: " << managers[0]->M_secondname << endl;
+                  cout << "ID: " << managers[0]->M_ref_id << endl;
+                   cout << "Department: " << managers[0]->M_department << endl; 
+    
+    for(int i=0; i<size; i++){
+         cout << "" << endl;
+        cout << "Name:" << employees[i]->_name << "  Second name  " <<  employees[i]->secondname << endl;
+          cout << "ID:" << employees[i]->ref_id << endl;
+           cout << "Department:" << employees[i]->_department << endl;
+           
+            
+        }
+               
+}
+
+int main()
+{
+    
+    Employee Emp("Anne", "BEL", 123345, "Theatre");// test Employee
+    Employee jane("Jane","Smith",100101,"Sales");
+    Manager sarah("Sarah","Murphy",100155,"Marketing");
+    
+    sarah.manages(jane);
+    sarah.manages(Emp);
+    sarah.print();
+    
+    //Function call
+    const int size = 5;
+    
+    ref_Employee::Manager* managers[2];
+    managers[0] = new ref_Employee::Manager{"Sarah","Murphy",100155,"Marketing"};
+    
+    
+    ref_Employee* employees[size];
+    employees[0] = new ref_Employee{"Alice","Keeting",150001, "Engineer"};
+    employees[1] = new ref_Employee{"Bob","Marley",150002, "Cleaner" };
+    employees[2] = new ref_Employee{"Charlie","Chaplin",150003, "Director" };
+    printEmployees(employees,managers,size);
+    return 0;
+}
